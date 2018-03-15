@@ -1,0 +1,22 @@
+{
+  "name": "move-tralier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lijiliang/move-tralier.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lijiliang/move-tralier/issues"
+  },
+  "homepage": "https://github.com/lijiliang/move-tralier#readme",
+  "dependencies": {
+    "koa": "^2.5.0"
+  }
+}
