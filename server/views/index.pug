@@ -4,10 +4,35 @@ block title
   title koa Douban 首页
 
 block content
-  .container
-    .row
-      .col-md-8
-        h1 Hi #{you}
-        p This is #{me}
-      .col-md-4
-        p 测试 Pug 模板引擎
+  include ./includes/header
+
+  .container.fluid
+    .col-12.col-md-1.col-xl-1.sidebar
+    .collapse.cat-links
+    .sidebar-item.active
+      a.sidebar-link(href='/link1') 2018 年
+      a.sidebar-link(href='/link1') 2019 年
+      a.sidebar-link(href='/link1') 2020 年
+      a.sidebar-link(href='/link1') 2021 年
+      a.sidebar-link(href='/link1') 2022 年
+      a.sidebar-link(href='/link1') 2023 年
+      a.sidebar-link(href='/link1') 2024 年
+      a.sidebar-link(href='/link1') 2025 年
+    .content
+      .row
+        .col-md-6
+          .cart
+            img.cart-img-top(src="",data-video="")
+            .cart-body
+              h4.cart-title 这是电影标题
+              p.cart-desc 这是电影描述
+            .cart-footer
+              small.text-muted 1 天前更新
+        .col-md-6
+          .cart
+            img.cart-img-top(src="",data-video="")
+            .cart-body
+              h4.cart-title 这是电影标题
+              p.cart-desc 这是电影描述
+            .cart-footer
+              small.text-muted 1 天前更新
