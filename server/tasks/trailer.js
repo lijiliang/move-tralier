@@ -23,13 +23,13 @@ const { resolve } = require('path')
 
     invoked = true
     let err = code === 0 ? null : new Error('exit code ' + code)
-
+ 
     console.log(err)
   })
 
   // 拿到数据
   child.on('message', data => {
-
+    // https://img3.doubanio.com/view/photo/l_ratio_poster/public/p2457983084.jpg
     console.log( data)
   })
 })()

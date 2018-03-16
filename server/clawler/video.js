@@ -3,7 +3,7 @@
 const puppeteer = require('puppeteer')
 
 const base = `https://movie.douban.com/subject/`
-const doubanId = '1295644'
+const doubanId = '26387939'
 const videoBase = `https://movie.douban.com/trailer/108757/`
 
 // 定时函数
@@ -54,7 +54,7 @@ const sleep = time => new Promise(resolve => {
     await page.goto(result.link, {
       waitUntil: 'networkidle2'
     })
-    await sleep(2000)
+    await sleep(2000) 
 
     video = await page.evaluate(() => {
       var $ = window.$
