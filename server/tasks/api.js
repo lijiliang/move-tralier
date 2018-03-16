@@ -30,7 +30,7 @@ async function fetchMovie(item) {
     try {
       movieData = JSON.parse(movieData)
       console.log(movieData.title)
-      console.log(movieData.summary)
+      console.log(movieData.summary.replace('©豆瓣', '@Benson'))
     } catch(err){
       console.log(err)
     }
