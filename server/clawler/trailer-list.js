@@ -23,13 +23,13 @@ const sleep = time => new Promise(resolve => {
     waitUntil: 'networkidle2'  // 当网站空闲的时候，说明页面已经加载完毕
   })
 
-  // 等待3秒
+  // 等待3秒 
   await sleep(3000)
 
   await page.waitForSelector('.more')  // 等待"加载更多"按钮出现
 
-  // 这里只取到第10页
-  for(let i = 0; i < 10; i++) {
+  // 这里只取到第2页
+  for(let i = 0; i < 2; i++) {
     await sleep(3000)
 
     // 定义点击的函数
@@ -62,5 +62,9 @@ const sleep = time => new Promise(resolve => {
 
   // 关闭浏览器
   brower.close()
-  console.log(result, result.length)
+
+  // console.log(result, result.length)
+  process.send({result})
+  process.exit(0)  // 退出进程
+  
 })()
