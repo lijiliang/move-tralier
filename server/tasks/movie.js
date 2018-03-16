@@ -1,3 +1,4 @@
+// 利用子进程抓取数据
 const cp = require('child_process') // 引入子进程
 const { resolve } = require('path')
 
@@ -20,7 +21,7 @@ const { resolve } = require('path')
   child.on('exit', code => {
     if (invoked) return
 
-    invoked = false
+    invoked = true
     let err = code === 0 ? null : new Error('exit code ' + code)
 
     console.log(err)

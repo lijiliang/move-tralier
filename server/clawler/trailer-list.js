@@ -49,12 +49,12 @@ const sleep = time => new Promise(resolve => {
         let rate = Number(it.find('.rate').text())
         let poster = it.find('img').attr('src').replace('s_ratio', 'l_ratio')
 
-        links.push([
+        links.push({
           doubanId,
           title,
           rate,
           poster
-        ])
+        })
       })
     }
     return links
@@ -64,7 +64,8 @@ const sleep = time => new Promise(resolve => {
   brower.close()
 
   // console.log(result, result.length)
-  process.send({result})
+  
+  process.send({result})    // 当一个子进程使用 process.send() 发送消息时会触发 'message' 事件
   process.exit(0)  // 退出进程
   
 })()
