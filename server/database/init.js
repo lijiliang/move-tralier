@@ -1,10 +1,17 @@
 // 初始化 Mongodb
 const mongoose = require('mongoose')
+const glob = require('glob')
+const { resolve } = require('path') 
 const db = 'mongodb://127.0.0.1:27017/douban-tralier'
 
 // 让mongoose的promise直接用标准的promise
 mongoose.Promise = global.Promise
 
+// 引入 Schema
+exports.initSchemas = () => {
+  // 拿到 schema 文件下的所有js,并自动引入，不需要每个js都module.exports
+  glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require)
+}
 exports.connect = () => {
   let maxConnectTimes = 0  // 连接失败，重连的次数
 
