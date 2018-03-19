@@ -1,5 +1,3 @@
-import { reject } from 'any-promise';
-
 // 上传图片和视频到七牛
 const qiniu = require('qiniu')
 const nanoid = require('nanoid') // 随机生成一个id
