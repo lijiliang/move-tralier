@@ -13,9 +13,9 @@ const mongoose = require('mongoose')
   initSchemas()
 
   // 查询数据
-  const Movie = mongoose.model('Movie')
-  const Movies = await Movie.find({})
-  console.log(movies)
+  // const Movie = mongoose.model('Movie')
+  // const Movies = await Movie.find({})
+  // console.log(movies)
 })()
 
 // view中间件

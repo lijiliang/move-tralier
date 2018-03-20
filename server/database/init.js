@@ -12,6 +12,7 @@ exports.initSchemas = () => {
   // 拿到 schema 文件下的所有js,并自动引入，不需要每个js都module.exports
   glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require)
 }
+
 exports.connect = () => {
   let maxConnectTimes = 0  // 连接失败，重连的次数
 
