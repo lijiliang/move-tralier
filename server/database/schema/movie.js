@@ -9,13 +9,13 @@ const MovieSchema = new Schema({
     unique: true,
     type: String
   },
-  category: {
+  category: [{
     type: ObjectId,
     ref: 'Category'  // 指向模型
-  },
+  }],
   rate: Number,
   title: String,
-  summary: String,
+  summary: String,  // 简介
   video: String,
   poster: String,
   cover: String,
@@ -23,10 +23,10 @@ const MovieSchema = new Schema({
   posterKey: String,
   coverKey: String,
   rawTitle: String,
-  movieType: [String],
+  movieTypes: [String],
   pubdate: Mixed,
   year: Number,
-  tags: [String],
+  tags: [String],  // 标签
   meta: { // 电影创建及修改的时间
     createdAt: {
       type: Date,

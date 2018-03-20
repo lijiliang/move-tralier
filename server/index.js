@@ -13,7 +13,8 @@ const mongoose = require('mongoose')
   initSchemas()
 
   // 引入爬虫，抓取数据存到数据库
-  require('./tasks/movie')
+  // require('./tasks/movie')
+  require('./tasks/api')
 })()
 
 // view中间件
