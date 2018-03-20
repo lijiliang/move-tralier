@@ -4,6 +4,7 @@ const views = require('koa-views')
 const { resolve } = require('path') 
 const { connect, initSchemas } = require('./database/init')
 const mongoose = require('mongoose')
+const routers = require('./router')
 
 // 进入应用之前先连接数据库
 ;(async () => {
@@ -16,6 +17,10 @@ const mongoose = require('mongoose')
   // require('./tasks/movie')
   require('./tasks/api')
 })()
+
+// 初始化路由
+app.use(routers.routes())
+   .use(routers.allowedMethods())
 
 // view中间件
 app.use(views(resolve(__dirname, './views'), {
