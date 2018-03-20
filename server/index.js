@@ -12,10 +12,6 @@ const mongoose = require('mongoose')
   // 初始化所有 Schema
   initSchemas()
 
-  // 查询数据
-  // const Movie = mongoose.model('Movie')
-  // const Movies = await Movie.find({})
-  // console.log(movies)
 })()
 
 // view中间件

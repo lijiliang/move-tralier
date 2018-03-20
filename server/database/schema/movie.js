@@ -39,8 +39,10 @@ const MovieSchema = new Schema({
   }
 })
 
+// 保存数据之前
 MovieSchema.pre('save', function (next) {
   if (this.isNew) {
+    // 如果这条数据不是新增加的，直接用系统时间
     this.meta.createdAt = this.meta.updatedAt = Date.now()
   } else {
     this.meta.updatedAt = Date.now()
