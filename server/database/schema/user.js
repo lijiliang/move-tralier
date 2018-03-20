@@ -48,12 +48,12 @@ const UserSchema = new Schema({
 })
 
 // 添加一个虚拟字段来保存登录失败的次数
-UserSchema.virtual('isLocked').get(() => {
+UserSchema.virtual('isLocked').get(function(){
   return !!(this.lockUntil && this.lockUntil > Date.now())
 })
 
 // 保存数据之前的创建及修改时间处理
-UserSchema.pre('save', next => {
+UserSchema.pre('save', function(next){
   if (this.isNew) {
     this.meta.createdAt = this.meta.updatedAt = Date.now()
   } else {
@@ -63,19 +63,20 @@ UserSchema.pre('save', next => {
 })
 
 // 对密码进行加盐及加密的中间件
-UserSchema.pre('save', next => {
+UserSchema.pre('save', function(next) {
+  let user = this
   // 如果密码没有任何更改，直接返回
-  if (!this.isModified('password')) return next()
+  if (!user.isModified('password')) return next()
   // 随机生成盐
   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
     if (err) return next()
 
     // 对密码进行加密
-    bcrypt.hash(this.password, salt, (error, hash) => {
+    bcrypt.hash(user.password, salt, (error, hash) => {
       if (err) return next()
       
       // 生成加盐加密后的密码
-      this.password = hash
+      user.password = hash
       next()
     })
   })
@@ -90,7 +91,7 @@ UserSchema.methods = {
    * _password 提交过来的原始密码
    * password 加盐加密后的密码
    */
-  comparePassword: (_password, password) => {
+  comparePassword: function(_password, password) {
     return new Promise((resolve, rject) => {
       // 对比两个密码，返回true或者false
       bcrypt.compare(_password, password, (err, isMatch) => {
@@ -100,10 +101,12 @@ UserSchema.methods = {
     })
   },
   // 判断登录次数
-  incLoginAttempts: (user) => {
+  incLoginAttempts: function(user) {
+    const that = this
+
     return new Promise((resolve, reject) => {
-      if (this.lockUntil && this.lockUntil < Date.now()) {
-        this.update({
+      if (that.lockUntil && that.lockUntil < Date.now()) {
+        that.update({
           $set: {
             loginAttempts: 1
           },
@@ -121,14 +124,14 @@ UserSchema.methods = {
           }
         }
 
-        if (this.loginAttempts + 1 >= MAX_LOGIN_ATTEMPTS && this.isLocked) {
+        if (that.loginAttempts + 1 >= MAX_LOGIN_ATTEMPTS && that.isLocked) {
           updates.$set = {
             lockUntil: Date.now() + LOCK_TIME
           }
         }
 
         // 更改数据
-        this.update(updates, err => {
+        that.update(updates, err => {
           if (!err) resolve(true)
           else reject(err)
         })

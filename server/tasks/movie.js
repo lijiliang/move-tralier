@@ -1,6 +1,8 @@
 // 利用子进程抓取数据
 const cp = require('child_process') // 引入子进程
 const { resolve } = require('path')
+const mongoose = require('mongoose')
+const Movie = mongoose.model('Movie')
 
 ;(async () => {
   const script = resolve(__dirname, '../clawler/trailer-list')
@@ -31,6 +33,19 @@ const { resolve } = require('path')
   child.on('message', data => {
     let result = data.result
 
-    console.log( result)
+    // console.log( result)
+
+    // 循环取到的数据，并保存到数据库
+    result.forEach(async item => {
+      let movie = await Movie.findOne({
+        doubanId: item.doubanId
+      })
+      // 如果id不存在，则将数据存储
+      if (!movie) {
+        movie = new Movie(item)
+        await movie.save()
+      }
+    })
+
   })
 })()

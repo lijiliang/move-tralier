@@ -49,3 +49,5 @@ Promise.resolve()
   .then(() => {
     console.log('promise 的第 2 次回调')
   })
+
+  

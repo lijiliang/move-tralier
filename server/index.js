@@ -12,6 +12,8 @@ const mongoose = require('mongoose')
   // 初始化所有 Schema
   initSchemas()
 
+  // 引入爬虫，抓取数据存到数据库
+  require('./tasks/movie')
 })()
 
 // view中间件
