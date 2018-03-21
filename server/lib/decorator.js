@@ -16,7 +16,9 @@ export class Route {
   }
 
   init () {
+
     glob.sync(resolve(this.apiPath, '**/*.js')).forEach(require)
+
     for (let [conf, controller] of routerMap) {
       const controllers = isArray(controller)
       const prefixPath = conf.target[SymbolPrefix]

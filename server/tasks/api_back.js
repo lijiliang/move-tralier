@@ -71,7 +71,7 @@ async function fetchMovie(item) {
         movie.movieTypes = movieData.attrs.movie_type || []
         movie.year = movieData.attrs.year[0] || 2500
 
-        for (let i = 0; i < movieData.movie_type.length; i++) {
+        for (let i = 0; i < movie.movie_type.length; i++) {
           let item = movie.movieTypes[i]
           let cat = await Category.findOne({
             name: item

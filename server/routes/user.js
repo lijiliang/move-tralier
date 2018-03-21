@@ -6,9 +6,9 @@ const {
 
 @controller('/api/v0/user')
 export class userController {
-  // 获取所有的电影列表
-  @get('/')
-  async checkPassword (ctx, next) {
+  // 登录
+  @post('/')
+  async login (ctx, next) {
     const { email, password } = ctx.request.body
     const matchData = await checkPassword(email, password)
 
