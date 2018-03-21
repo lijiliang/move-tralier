@@ -1,5 +1,7 @@
 import React from 'react'
 
-export default App = ({ name }) => {
-  return <div>{name}</div>
+const App = ({ name }) => {
+  return <div>测试：{name}</div>
 }
+
+export default App

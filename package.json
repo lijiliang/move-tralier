@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build parcel/index.html --no-cache -d parcel/dist --public-url /dist/",
+    "build": "rm -rf parcel/dist && parcel build parcel/index.html --no-cache -d parcel/dist --public-url /dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,6 +32,8 @@
     "pug": "^2.0.1",
     "puppeteer": "^1.1.1",
     "ramda": "^0.25.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "request": "^2.85.0",
     "request-promise-native": "^1.0.5"
   },
