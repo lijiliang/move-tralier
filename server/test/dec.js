@@ -1,7 +1,8 @@
 
 class Boy {
-  @speak
+  @speak('中文')
   run () {
+    console.log('I can speak ' + this.language)
     console.log('I can run!')
   }
 }
@@ -12,9 +13,24 @@ class Boy {
  * @name 装饰的属性的 key
  * @descriptor 装饰的对象的描述对象
  */
-function speak (target, key, descriptor) {
-  console.log(target)
+// function speak (target, key, descriptor) {
+//   console.log(target)
+//   console.log(key)
+//   console.log(descriptor)
+// }
+
+function speak (language) {
+  return function (target, key, descriptor) {
+    console.log(target)
+    console.log(key)
+    console.log(descriptor)
+
+    target.language = language
+
+    return descriptor
+  }
 }
+
 
 const Luke = new Boy()
 

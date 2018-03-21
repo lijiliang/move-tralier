@@ -1,4 +1,4 @@
 require('babel-core/register')()
 require('babel-polyfill')
 
-require('./server/test/dec')
+require('./server/index.js')
