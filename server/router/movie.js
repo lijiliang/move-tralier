@@ -3,6 +3,11 @@ const Router = require('koa-router')
 const mongoose = require('mongoose')
 const router = new Router()
 
+// controller('/api/v0/movies')
+// export class movieController
+// get('/:id')
+// async getMovies (ctx, next) {}
+
 // 获取所有的电影列表
 router.get('/movies/all', async (ctx, next) => {
   const Movie = mongoose.model('Movie')
