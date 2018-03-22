@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom'
 import Routes from './routes'
 import 'antd/dist/antd.css'
-import './assets/common.scss'
+import './assets/common.sass'
 
 export default () => (
   <Switch>
