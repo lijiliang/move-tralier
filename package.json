@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/lijiliang/move-tralier#readme",
   "dependencies": {
+    "antd": "^3.3.1",
+    "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "bcrypt": "^1.0.3",
@@ -30,16 +32,16 @@
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
     "lodash": "^4.17.5",
+    "moment": "^2.21.0",
     "mongoose": "^5.0.10",
     "pug": "^2.0.1",
     "puppeteer": "^1.1.1",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
     "request": "^2.85.0",
-    "request-promise-native": "^1.0.5",
-    "antd": "^3.3.1",
-    "react-router-dom": "^4.2.2"
+    "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^8.2.0",

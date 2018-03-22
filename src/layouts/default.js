@@ -6,15 +6,17 @@ import {
 import { Link } from 'react-router-dom'
 import navRoutes from '../nav'
 
+
 const getMenuContent = ( { path, name }) => {
-  <a href={path ? path : '/'} style={{color: '#fff2e8'}}>
+  return (<a href={path ? path : '/'} style={{color: '#fff2e8'}}>
     {name}
   </a>
+  )
 }
 
 export default class LayoutDefault extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
       loading: false,
       tip: '再等一下下嘛~'
@@ -30,13 +32,12 @@ export default class LayoutDefault extends Component {
   }
 
   matchRouteName = this.props.match
-    ? navRoutes.find(e => e.name === this.props.match.parmas.type)
-      ? navRoutes.find(e => e.name === this.props.match.params.type)
-        .name
+  ? navRoutes.find(e => e.name === this.props.match.params.type)
+      ? navRoutes.find(e => e.name === this.props.match.params.type).name
       : '全部'
-    : navRoutes[0].name
+  : navRoutes[0].name
 
-  toggleLoading = (stats = false, tip = '再等一下下嘛~') => {
+  toggleLoading = (status = false, tip = '再等一下下嘛~') => {
      this.setState({
        tip,
        loading: status
@@ -64,17 +65,15 @@ export default class LayoutDefault extends Component {
               float: 'left'
             }}
           >
-            <a href={'/'} className='hover-scale logo-text' style={{color: '#ff2e8'}}>黑骑网站</a>
+            <a href={'/'} className='hover-scale logo-text' style={{color: '#fff2e8'}}>黑骑预告片网站</a>
           </Menu.Item>
-          <Menu.Item key={e.name}>
-            {
-              navRoutes.map((e, i) => {
-                {
-                  getMenuContent({...e})
-                }
-              })
-            }
-          </Menu.Item>
+          {
+            navRoutes.map((e, i) => (
+              <Menu.Item key={e.name}>
+                { getMenuContent({ ...e }) }
+              </Menu.Item>
+            ))
+          }
         </Menu>
         <Spin
           spinning={loading} 

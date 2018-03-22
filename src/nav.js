@@ -29,7 +29,7 @@ export default [
     path: `/list/${encodeURIComponent('文艺')}`
   },
   {
-    name: '励志',
+    name: '励志', 
     path: `/list/${encodeURIComponent('励志')}`
   },
 ]

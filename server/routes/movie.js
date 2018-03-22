@@ -17,7 +17,7 @@ export class movieController {
 
     ctx.body = {
       success: true,
-      movies
+      data: movies
     }
   }
 
