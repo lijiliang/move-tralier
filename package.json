@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf parcel/dist && parcel build parcel/index.html --no-cache -d parcel/dist --public-url /dist/",
+    "start": "rm -rf dist && rm -rf .cache && NODE_ENV=development nodemon ./start.js",
+    "build": "rm -rf dist && parcel build src/index.html --no-cache -d dist --public-url /",
+    "buildParcel": "rm -rf parcel/dist && parcel build parcel/index.html --no-cache -d parcel/dist --public-url /dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -38,6 +40,7 @@
     "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
+    "autoprefixer": "^8.2.0",
     "babel-core": "^6.26.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -46,6 +49,9 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "cssnext": "^1.8.4",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.17.2",
     "parcel-bundler": "^1.6.2"
   }
 }
