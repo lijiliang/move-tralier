@@ -11,7 +11,7 @@ import {
 import 'moment/locale/zh-cn'
 moment.locale('zh-cn')
 
-const site = 'http://p60z37jfd.bkt.clouddn.com'  // 图片路径
+const site = 'http://p60z37jfd.bkt.clouddn.com/'  // 图片路径
 const Meta = Card.Meta 
 
 export default class Content extends Component {
@@ -51,7 +51,7 @@ export default class Content extends Component {
                       {it.rate} 分
                     </Badge>
                   ]}
-                  cover={<img src={site + it.posterKey + '?imageMongr2/thumbnail/x1680/crop/1080*1600'} />}
+                  cover={<img src={site + it.posterKey + '?imageMogr2/thumbnail/x1680/crop/1080x1600'} />}
                 >
                   <Meta
                     style={{height: '202px', overflow: 'hidden'}}
