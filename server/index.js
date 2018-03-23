@@ -31,7 +31,7 @@ const useMiddlewares = (app) => {
   // require('./tasks/movie')
   // require('./tasks/api')
   // require('./tasks/trailer')
-  require('./tasks/qiniu')
+  // require('./tasks/qiniu')
 
   const app = new Koa()
   await useMiddlewares(app)
