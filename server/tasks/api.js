@@ -1,5 +1,4 @@
 // 服务器端通过 request 向豆瓣 api 请求详细数据
-// http://api.douban.com/v2/movie/1764796
 const rp = require('request-promise-native')
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')

@@ -11,7 +11,7 @@ import {
 import 'moment/locale/zh-cn'
 moment.locale('zh-cn')
 
-const site = 'http://video/iblack7.com'  // 图片路径
+const site = 'http://p60z37jfd.bkt.clouddn.com'  // 图片路径
 const Meta = Card.Meta 
 
 export default class Content extends Component {

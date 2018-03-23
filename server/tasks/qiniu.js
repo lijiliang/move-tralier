@@ -5,7 +5,7 @@ const config = require('../config')
 
 const bucket = config.qiniu.bucket
 const mac = new qiniu.auth.digest.Mac(config.qiniu.AK, config.qiniu.SK)
-const cfg = new qiniu.confg.Config()  // 构建配置类
+const cfg = new qiniu.conf.Config()  // 构建配置类
 const client = new qiniu.rs.BucketManager(mac, cfg)
 
 const uploadToQiniu = async (url, key) => {
@@ -42,11 +42,12 @@ const uploadToQiniu = async (url, key) => {
         console.log('开始传 poster')
         let posterData = await uploadToQiniu(movie.poster, nanoid() + '.png')  // 海报
 
+        console.log(videoData, coverData, posterData)
         if (videoData.key) {
           movie.videoKey = videoData.key
         }
         if (coverData.key) {
-          movie.coverKey = coverKey.key
+          movie.coverKey = videoData.key
         }
         if (posterData.key) {
           movie.posterKey = posterData.key

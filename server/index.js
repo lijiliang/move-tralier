@@ -5,6 +5,7 @@ const { connect, initSchemas } = require('./database/init')
 const mongoose = require('mongoose')
 const R = require('ramda')
 const MIDDLEWARES = ['router', 'parcel']
+// const MIDDLEWARES = ['router']
 
 // 利用函数式编程 加载中间件数组
 const useMiddlewares = (app) => {
@@ -29,6 +30,7 @@ const useMiddlewares = (app) => {
   // 引入爬虫，抓取数据存到数据库
   // require('./tasks/movie')
   // require('./tasks/api')
+  // require('./tasks/trailer')
 
   const app = new Koa()
   await useMiddlewares(app)

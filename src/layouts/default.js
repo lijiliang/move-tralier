@@ -19,7 +19,7 @@ export default class LayoutDefault extends Component {
     super(props)
     this.state = {
       loading: false,
-      tip: '再等一下下嘛~'
+      tip: '加载中...'
     }
   }
 
@@ -37,7 +37,7 @@ export default class LayoutDefault extends Component {
       : '全部'
   : navRoutes[0].name
 
-  toggleLoading = (status = false, tip = '再等一下下嘛~') => {
+  toggleLoading = (status = false, tip = '加载中...') => {
      this.setState({
        tip,
        loading: status
