@@ -18,6 +18,8 @@ moment.locale('zh-cn')
 const site = 'http://p60z37jfd.bkt.clouddn.com/'  // 图片路径
 const Meta = Card.Meta 
 
+const DPlayer = window.DPlayer
+
 export default class Content extends Component {
   constructor(props){
     super(props)
