@@ -4,6 +4,7 @@ const User = mongoose.model('User')
 
 // 判断密码是否一致
 export const checkPassword = async (email, password) => {
+
   let match = false
   const user = await User.findOne({email})
 

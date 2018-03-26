@@ -48,40 +48,39 @@ const UserSchema = new Schema({
 })
 
 // 添加一个虚拟字段来保存登录失败的次数
-UserSchema.virtual('isLocked').get(function(){
+UserSchema.virtual('isLocked').get(function () {
   return !!(this.lockUntil && this.lockUntil > Date.now())
 })
 
 // 保存数据之前的创建及修改时间处理
-UserSchema.pre('save', function(next){
+UserSchema.pre('save', function (next) {
   if (this.isNew) {
     this.meta.createdAt = this.meta.updatedAt = Date.now()
   } else {
     this.meta.updatedAt = Date.now()
   }
+
   next()
 })
 
 // 对密码进行加盐及加密的中间件
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
   let user = this
   // 如果密码没有任何更改，直接返回
   if (!user.isModified('password')) return next()
   // 随机生成盐
   bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
-    if (err) return next()
+    if (err) return next(err)
 
     // 对密码进行加密
     bcrypt.hash(user.password, salt, (error, hash) => {
-      if (err) return next()
+      if (error) return next(error)
       
       // 生成加盐加密后的密码
       user.password = hash
       next()
     })
   })
-
-  next()
 })
 
 // 实例方法
@@ -91,17 +90,18 @@ UserSchema.methods = {
    * _password 提交过来的原始密码
    * password 加盐加密后的密码
    */
-  comparePassword: function(_password, password) {
-    return new Promise((resolve, rject) => {
+  comparePassword: function (_password, password) {
+    return new Promise((resolve, reject) => {
       // 对比两个密码，返回true或者false
-      bcrypt.compare(_password, password, (err, isMatch) => {
+      bcrypt.compare(_password, password, function (err, isMatch) {
         if (!err) resolve(isMatch)
         else reject(err)
       })
     })
   },
+
   // 判断登录次数
-  incLoginAttempts: function(user) {
+  incLoginAttempts: function (user) {
     const that = this
 
     return new Promise((resolve, reject) => {
@@ -109,11 +109,11 @@ UserSchema.methods = {
         that.update({
           $set: {
             loginAttempts: 1
-          },
+          }, 
           $unset: {
             lockUntil: 1
           }
-        }, (err) => {
+        }, function (err) {
           if (!err) resolve(true)
           else reject(err)
         })
@@ -124,7 +124,7 @@ UserSchema.methods = {
           }
         }
 
-        if (that.loginAttempts + 1 >= MAX_LOGIN_ATTEMPTS && that.isLocked) {
+        if (that.loginAttempts + 1 >= MAX_LOGIN_ATTEMPTS && !that.isLocked) {
           updates.$set = {
             lockUntil: Date.now() + LOCK_TIME
           }

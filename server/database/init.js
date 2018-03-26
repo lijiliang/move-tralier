@@ -12,6 +12,24 @@ exports.initSchemas = () => {
   // 拿到 schema 文件下的所有js,并自动引入，不需要每个js都module.exports
   glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require)
 }
+ 
+// 初始化管理员数据
+exports.initAdmin = async () => {
+  const User = mongoose.model('User')
+  let user = await User.findOne({
+    username: 'Benson'
+  })
+
+  if (!user) {
+    user = new User({
+      username: 'Benson',
+      email: '19518288356@qq.com',
+      password: '12345qwer'
+    })
+  }
+
+  await user.save()
+}
 
 // 连接数据库
 exports.connect = () => {

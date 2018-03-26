@@ -1,10 +1,10 @@
 const Koa = require('koa')
 const views = require('koa-views')
 const { join, resolve } = require('path')
-const { connect, initSchemas } = require('./database/init')
+const { connect, initSchemas, initAdmin } = require('./database/init')
 const mongoose = require('mongoose')
 const R = require('ramda')
-const MIDDLEWARES = ['router', 'parcel']
+const MIDDLEWARES = ['common', 'router', 'parcel']
 // const MIDDLEWARES = ['router']
 
 // 利用函数式编程 加载中间件数组
@@ -23,9 +23,11 @@ const useMiddlewares = (app) => {
 // 进入应用之前先连接数据库
 ;(async () => {
   await connect()
-  
+
   // 初始化所有 Schema
   initSchemas()
+
+  // await initAdmin()
 
   // 引入爬虫，抓取数据存到数据库
   // require('./tasks/movie')

@@ -13,5 +13,11 @@ export default [
     icon: 'detail',
     path: '/detail/:id',
     component: AC(() => import('./views/movie/detail'))
+  },
+  {
+    name: '后台入口',
+    icon: 'admin',
+    path: '/admin',
+    component: AC(() => import('./views/admin/login'))
   }
 ]

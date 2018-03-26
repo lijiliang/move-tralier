@@ -58,6 +58,7 @@ export default class Detail extends Component {
         this.player = new DPlayer({
           container: document.getElementById('videoPlayer'),
           screenshot: true,
+          autoplay: true,
           video: {
             url: video,
             pic: pic,
