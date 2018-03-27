@@ -22,9 +22,10 @@ exports.initAdmin = async () => {
 
   if (!user) {
     user = new User({
-      username: 'Benson',
-      email: '19518288356@qq.com',
-      password: '12345qwer'
+      username: 'Ben',
+      email: '1951828835@qq.com',
+      password: '12345qwer',
+      role: 'admin'
     })
   }
 

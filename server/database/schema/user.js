@@ -28,6 +28,10 @@ const UserSchema = new Schema({
     unique: true,
     type: String
   },
+  role: {
+    type: String,
+    default: 'user'
+  },
   loginAttempts: {  // 最大登录次数
     type: Number,
     required: true,

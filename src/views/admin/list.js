@@ -9,7 +9,7 @@ import {
 } from 'antd'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
-
+ 
 moment.locale('zh-cn')
 
 const site = 'http://p60z37jfd.bkt.clouddn.com/'  // 图片路径
@@ -111,7 +111,7 @@ export default class Home extends Component {
   _getAllMovies = () => {
     request({
       method: 'get',
-      url: '/api/v0/movies'
+      url: '/admin/movie/list'
     }).then(res => {
       this.setState({
         dataSource: res
