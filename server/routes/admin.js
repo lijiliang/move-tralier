@@ -34,7 +34,7 @@ export class adminController {
   // 登录
   @post('/login')
   @required({
-    body: ['email', 'password', 'abc']
+    body: ['email', 'password']
   })
   async login (ctx, next) {
     const { email, password } = ctx.request.body
@@ -50,6 +50,15 @@ export class adminController {
 
     // 用户和密码正确，直接返回true
     if (matchData.match) {
+      const user = matchData.user
+      // 设置session
+      ctx.session.user = {
+        _id: user._id,
+        email: user.email,
+        role: user.role,
+        username: user.username
+      }
+
       return (ctx.body = {
         success: true
       })

@@ -93,20 +93,11 @@ const decorate = (args, middleware) => {
   return descriptor
 }
 
-export const convert = middleware => (target, key, descriptor) => {
-  return (target, key, descriptor) => {
-    target[key] = R.compose(
-      R.concat(
-        changeToArr(middleware)
-      ),
-      changeToArr
-    )(target[key])
-    return descriptor
-  }
-}
+export const convert = middleware => (...args) => decorate(args, middleware)
 
 // 验证是否登录
 export const auth = convert(async (ctx, next) => {
+  console.log(ctx.session)
   if (!ctx.session.user) {
     return (
       ctx.body = {
@@ -142,18 +133,57 @@ export const admin = roleExpected => convert(async (ctx, next) => {
 })
 
 // 参数合法性校验  判断前端传过来的数据是否缺失
-export const required = rules => convert(async (ctx, next) => {
-  let errors = []
+// export const required = rules => convert(async (ctx, next) => {
+//   let errors = []
 
-  const checkRules = R.forEachObjIndexed(
-    (value, key) => {
-      errors = R.filter(i => !R.has(i, ctx, request[key]))(value)
+//   const checkRules = R.forEachObjIndexed(
+//     (value, key) => {
+//       errors = R.filter(i => !R.has(i, ctx, ctx.request[key]))(value)
+//     }
+//   )
+
+//   checkRules(rules)
+//   console.log(rules, errors)
+//   if (errors.length) {
+//     return (
+//         ctx.body = {
+//         success: false,
+//         code: 412,
+//         err: `${errors.join(',')} is required`
+//       }
+//     )
+//   }
+
+//   await next()
+// })
+
+/**
+ * 参数合法性校验  判断前端传过来的数据是否缺失
+ * @required({
+ *   body: ['name', 'password']
+ * })
+ */
+export const required = paramsObj => convert(async (ctx, next) => {
+  let errs = []
+
+  R.forEachObjIndexed(
+    (val, key) => {
+      errs = errs.concat(
+        R.filter(
+          name => !R.has(name, ctx.request[key])
+        )(val)
+      )
     }
-  )
+  )(paramsObj)
 
-  checkRules(rules)
-  console.log(rules)
-  if (errors.length) ctx.throw(412, `${error.join(',')} is required`)
-
+  if (!R.isEmpty(errs)) {
+    return (
+      ctx.body = {
+        success: false,
+        errCode: 412,
+        errMsg: `${R.join(', ', errs)} is required`
+      }
+    )
+  }
   await next()
 })

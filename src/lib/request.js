@@ -9,7 +9,7 @@ const _request = (params = {}, fn = () => {}) => {
   return axios({...defaultAxiosConf, ...params})
     .then((res) => {
       const { success, code, data, errMsg, errCode } = res.data
-      if (errCode === '401') {
+      if (errCode == '401') {
         window.location.href = '/'
         return
       }
