@@ -64,7 +64,7 @@ export const put = path => router({
 })
 
 export const del = path => router({
-  method: 'del',
+  method: 'delete',
   path: path
 })
 

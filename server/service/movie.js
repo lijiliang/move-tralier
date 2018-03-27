@@ -39,3 +39,13 @@ export const getRelativeMovies = async (movie) => {
 
   return relativeMovies
 }
+
+// 删除单个电影
+export const findAndRemove = async (id) => {
+  const movie = await Movie.findOne({_id: id})
+
+  // 如存在，则删除
+  if (movie) {
+    await movie.remove()
+  }
+}

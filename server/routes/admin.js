@@ -4,6 +4,7 @@ const {
   get, 
   post, 
   put, 
+  del,
   auth, 
   admin,
   required
@@ -14,6 +15,7 @@ const {
 
 const { 
   getAllMovies,
+  findAndRemove
 } = require('../service/movie')
 
 @controller('/admin')
@@ -23,6 +25,22 @@ export class adminController {
   @auth
   @admin('admin')
   async getMoviesList (ctx, next) {
+    const movies = await getAllMovies()
+
+    ctx.body = {
+      success: true,
+      data: movies
+    }
+  }
+
+  // 删除单个电影
+  @del('/movies')
+  @required({
+    query: ['id']
+  })
+  async removeMovie (ctx, next) {
+    const id = ctx.query.id
+    const movie = await findAndRemove(id)
     const movies = await getAllMovies()
 
     ctx.body = {
