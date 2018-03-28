@@ -1,0 +1,25 @@
+apps: 
+  - script: ./server/index.js
+    name: 'moveTralier'
+    env: 
+      COMMON_VARIABLE: true
+    env_production:
+      NODE_ENV: production
+deploy:
+  production:
+    user: root
+    host: 
+      - 23.106.136.163
+    port: 26613
+    ref: origin/master
+    repo: 
+      git@github.com:lijiliang/move-tralier.git
+    path: 
+      /home/website/move-tralier
+    ssh_options: StrictHostKeyChecking=no
+    pre-deploy: git fetch --all
+    post-deploy: 'npm install && npm run build && pm2 startOrRestart deploy.yaml --env production'
+    env:
+      NODE_ENV: production
+
+
