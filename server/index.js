@@ -9,7 +9,7 @@ const MIDDLEWARES = ['common', 'router']
 
 // 利用函数式编程 加载中间件数组
 const useMiddlewares = (app) => {
-  R.map(
+  R.map( 
     R.compose(
       R.forEachObjIndexed(
         initWith => initWith(app)
