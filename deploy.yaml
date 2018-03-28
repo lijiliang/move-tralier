@@ -9,7 +9,8 @@ deploy:
   production:
     user: root
     host: 
-      - 23.106.136.163:26613
+      - 23.106.136.163
+    port: 26613
     ref: origin/master
     repo: 
       git@github.com:lijiliang/move-tralier.git
