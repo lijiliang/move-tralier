@@ -4,8 +4,8 @@ const { join, resolve } = require('path')
 const { connect, initSchemas, initAdmin } = require('./database/init')
 const mongoose = require('mongoose')
 const R = require('ramda')
-const MIDDLEWARES = ['common', 'router', 'parcel']
-// const MIDDLEWARES = ['router']
+// const MIDDLEWARES = ['common', 'router', 'parcel']
+const MIDDLEWARES = ['common', 'router']
 
 // 利用函数式编程 加载中间件数组
 const useMiddlewares = (app) => {
