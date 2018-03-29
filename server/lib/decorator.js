@@ -132,31 +132,6 @@ export const admin = roleExpected => convert(async (ctx, next) => {
   await next()
 })
 
-// 参数合法性校验  判断前端传过来的数据是否缺失
-// export const required = rules => convert(async (ctx, next) => {
-//   let errors = []
-
-//   const checkRules = R.forEachObjIndexed(
-//     (value, key) => {
-//       errors = R.filter(i => !R.has(i, ctx, ctx.request[key]))(value)
-//     }
-//   )
-
-//   checkRules(rules)
-//   console.log(rules, errors)
-//   if (errors.length) {
-//     return (
-//         ctx.body = {
-//         success: false,
-//         code: 412,
-//         err: `${errors.join(',')} is required`
-//       }
-//     )
-//   }
-
-//   await next()
-// })
-
 /**
  * 参数合法性校验  判断前端传过来的数据是否缺失
  * @required({
